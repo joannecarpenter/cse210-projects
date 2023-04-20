@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 class Program
 {
@@ -24,7 +25,7 @@ class Program
             // Add integer to the list.
             userNumbers.Add(number);
         }
-        
+
         // Print list for debugging purposes.    
         // foreach (int entry in userNumbers)
         // {
