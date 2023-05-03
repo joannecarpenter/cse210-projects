@@ -79,15 +79,19 @@ class Journal
         // Read the entire file into an array of strings
         string[] lines = System.IO.File.ReadAllLines(fileName);
 
-        // Iterate through each string (AKA journal entry) in the array,
-        // splitting the string at the vertical pipe (|) and indexing each piece.
+        // Iterate through each string (AKA journal entry) in the array
         foreach (string line in lines)
         {
+            // Split the string at the vertical pipe (|) and indexing each piece
             string[] parts = line.Split("|");
-
             string date = parts[0];
             string prompt = parts[1];
             string response = parts[2];
+
+            // Format pieces of each entry 
+            Entry entry = new Entry(parts[0], parts[1], parts[2]);
+            // Add formatted entry pieces back into the _entries list
+            _entries.Add(entry);
         }
     }
 }
