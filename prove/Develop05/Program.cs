@@ -10,15 +10,21 @@ class Program
         Console.WriteLine("*** Welcome to Eternal Quest Goal Tracker! ***");
         Console.WriteLine();
         
-        // Create new instance of Goal for use throughout the Main
-        Goal goal = new Goal();
-  
+        // Create new instance of each goal class for use throughout the Main
+        
+        SimpleGoalGenerator simpleGoal = new SimpleGoalGenerator();
+        EternalGoalGenerator eternalGoal = new EternalGoalGenerator();
+        ChecklistGoalGenerator checklistGoal = new ChecklistGoalGenerator();
+        GoalMenuGenerator goalMenu = new GoalMenuGenerator(simpleGoal, eternalGoal, checklistGoal);
+        //GoalTextGenerator text = new GoalTextGenerator();
+        
         // Display Main Menu and receive user response
         string userChoice = "";
-        int goalPoints = 0;
+        int _goalPoints = 0;
         do{
             // Calculate and display the number of points  
-            goal.CalculatePoints(goalPoints);
+            //goal.CalculatePoints(goalPoints);
+            Console.WriteLine($"You have {_goalPoints} points.");
             Console.WriteLine();
             
             List<string> menuOptions = new List<string>()
@@ -38,15 +44,16 @@ class Program
             Console.Write("Select a choice from the menu: ");
             userChoice = Console.ReadLine();       
 
-            // Peform action based on user response
+            // Perform action based on user response
             if (userChoice == "1"){
                 Console.WriteLine("Let's create a new goal!");
-                Menu goalMenu = new Menu();
                 goalMenu.CreateGoal();
             }
             else if (userChoice == "2"){
                 Console.WriteLine("Let's list your goals!");
-                goal.DisplayGoalsList();
+                simpleGoal.DisplayGoalsList();
+                eternalGoal.DisplayGoalsList();
+                checklistGoal.DisplayGoalsList();
             }
             else if (userChoice == "3"){
                 Console.WriteLine("Let's save your goals!");
@@ -58,7 +65,21 @@ class Program
             }
             else if (userChoice == "5"){
                 Console.WriteLine("Let's record an event!");
-                // goal.RecordEvent();
+                Console.WriteLine("The goals are: ");
+                // Display the list of goals
+                simpleGoal.DisplayGoalsList();
+                eternalGoal.DisplayGoalsList();
+                checklistGoal.DisplayGoalsList();
+                // Receive user input on which goal was accomplished
+                Console.Write("Which goal did you accomplish? ");
+                string goalAccomplished = (Console.ReadLine());
+                // if the goal type (index 1) of the string goalAccomplished a simple goal
+                    simpleGoal.RecordEvent();
+                // if it is an eternal goal
+                    eternalGoal.RecordEvent();
+                // if it is a checklist goal
+                    checklistGoal.RecordEvent();
+                
             }
             else if (userChoice == "6"){
                 Console.WriteLine("Great job taking time to work on your goals today! Now go out and put those plans into action!");
