@@ -1,0 +1,3 @@
+SimpleGoal:Care for the garden,Water the plants,40,False
+EternalGoal:Pray regularly,Say a prayer today,30
+ChecklistGoal:Organize the house,Organize one room,20,200,3,0

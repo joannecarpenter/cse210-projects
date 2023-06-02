@@ -8,8 +8,6 @@ class Order
     private double _total = 0;
     private double _shippingCost = 0;
     private double _orderSubtotal = 0;
-    // private string _packingLabel = "";
-    // private string _packingLabelDetails = "";
 
     // Constructors
     public Order()
